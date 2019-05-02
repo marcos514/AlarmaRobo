@@ -8,7 +8,13 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Platform } from 'ionic-angular';
 
+import { DeviceMotion } from '@ionic-native/device-motion/ngx';
+import { DeviceOrientation } from '@ionic-native/device-orientation/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { Vibration } from '@ionic-native/vibration/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,7 +26,14 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Flashlight,
+    Vibration,
+    NativeAudio,
+    DeviceOrientation,
+    DeviceMotion,
+    Platform
+
   ],
   bootstrap: [AppComponent]
 })
