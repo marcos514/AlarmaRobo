@@ -9,3 +9,51 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+
+.base {
+    /* The image used */
+    background-image: url("./assets/splash/base.jpg");
+  
+    /* Full height */
+    height: 100%; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.center {
+    /* The image used */
+    background-image: url("./assets/splash/ladron.png");
+  
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation-name: spin;
+    animation-duration:2500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+
+.fondo{
+    height: 100%; 
+    width: 100%; 
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@keyframes spin {
+    from {
+        transform:scale(1,1);
+    }
+    to {
+        transform:scale(0,0);
+    }
+}

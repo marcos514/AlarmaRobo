@@ -30,6 +30,7 @@ export class HomePage {
   icon='unlock';
   color="success";
   izquierda=true;
+  flash=false;
   derecha=true;
   constructor(router: Router, deviceMotion: DeviceMotion,
     deviceOrientation: DeviceOrientation, nativeAudio: NativeAudio, flashlight: Flashlight,
@@ -81,35 +82,38 @@ export class HomePage {
             if(this.izquierda){
               this.izquierda = false;
               this.play('izquierda');
-              timer(5).subscribe(dd=>{this.izquierda=true});
+              timer(4000).subscribe(dd=>{this.izquierda=true});
             }
           }
           else if (acceleration.x < -8) {
             if(this.derecha){
               this.derecha = false;
               this.play('derecha');
-              timer(5).subscribe(d=>{this.derecha=true});
+              timer(5000).subscribe(d=>{this.derecha=true});
             }
           }
           else if ((acceleration.x > -3.0 && acceleration.x < 3.0 && acceleration.y > 8.5)) {
             if(this.vertical){
-              this.flashlight.switchOn();
-              timer(5).subscribe(data=>{
-                this.flashlight.switchOff;
+              this.vertical = false;
+              if(!this.flash){
+                this.flashlight.switchOn();
+                this.flash = true;
+              }
+              this.play('vertical');
+              timer(5000).subscribe(data=>{
+                this.flashlight.switchOff();
                 this.vertical = true;
               })
-              this.vertical = false;
               this.horizontal = false;
-              this.play('vertical');
             }
             
           }
           else if (acceleration.x > -3.0 && acceleration.x < 3.0 && acceleration.y < 1 && acceleration.y > -1) {
             if (this.horizontal === false) {
-              this.flashlight.switchOff();
               this.vibration.vibrate(5000);
               this.horizontal = true;
               this.play('horizontal');
+              this.flash = false;
             }
           }
         });
